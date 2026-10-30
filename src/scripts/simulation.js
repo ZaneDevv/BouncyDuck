@@ -24,10 +24,10 @@ const position = {x: 0, y: 0};
  */
 export function setGravityDirectionByAngle(angle)
 {
-    angle -= Math.PI / 2;
+    angle += Math.PI / 2;
 
     gravity.x = 12 * Math.cos(angle);
-    gravity.y = 12 * -Math.sin(angle);
+    gravity.y = 12 * Math.sin(angle);
 }
 
 /**
