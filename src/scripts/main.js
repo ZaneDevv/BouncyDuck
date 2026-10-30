@@ -12,10 +12,10 @@ function closeMenu()
 
 function attemptToEnableGyro()
 {
-    if (typeof DeviceMotionEvent.requestPermission === 'function')
+    if (typeof DeviceOrientationEvent.requestPermission === 'function')
     {
         // Handle iOS 13+ devices.
-        DeviceMotionEvent.requestPermission()
+        DeviceOrientationEvent.requestPermission()
             .then((state) => {
             if (state === 'granted')
             {
