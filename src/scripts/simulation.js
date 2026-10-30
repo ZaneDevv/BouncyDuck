@@ -34,6 +34,7 @@ export function setGravityDirectionByAngle(angle)
  */
 export function initialize()
 {
+    duck.style.display = "block";
     setInterval(update, DELTA_TIME);
 }
 
