@@ -2,13 +2,24 @@
 // METHODS
 // ------------------------------------------------------------------
 
-function attemptToEnableGyro() {
-    if (typeof DeviceMotionEvent.requestPermission === 'function') {
+function initialize()
+{
+    const accessMenu = document.getElementById("access-menu");
+    accessMenu.style.display = "none";
+}
+
+function attemptToEnableGyro()
+{
+    if (typeof DeviceMotionEvent.requestPermission === 'function')
+    {
         // Handle iOS 13+ devices.
         DeviceMotionEvent.requestPermission()
             .then((state) => {
             if (state === 'granted')
+            {
                 window.addEventListener('devicemotion', handleOrientation);
+                initialize();
+            }
             else
                 console.error('Request to access the orientation was rejected');
             })
