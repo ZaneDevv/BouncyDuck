@@ -4,6 +4,12 @@ import { run } from './simulation.js';
 // METHODS
 // ------------------------------------------------------------------
 
+function closeMenu()
+{
+    const accessMenu = document.getElementById("access-menu");
+    accessMenu.style.display = "none";
+}
+
 function attemptToEnableGyro()
 {
     if (typeof DeviceMotionEvent.requestPermission === 'function')
@@ -13,10 +19,8 @@ function attemptToEnableGyro()
             .then((state) => {
             if (state === 'granted')
             {
-                const accessMenu = document.getElementById("access-menu");
-                accessMenu.style.display = "none";
-
-                window.addEventListener('devicemotion', run);
+                closeMenu();
+                window.addEventListener('deviceorientation', run);
             }
             else
             {
@@ -32,7 +36,8 @@ function attemptToEnableGyro()
     else
     {
         // Handle regular non iOS 13+ devices.
-        window.addEventListener('devicemotion', handleOrientation);
+        closeMenu();
+        window.addEventListener('deviceorientation', run);
     }
 }
 
