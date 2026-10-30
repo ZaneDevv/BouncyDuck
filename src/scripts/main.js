@@ -1,12 +1,8 @@
+import { run } from './simulation.js';
+
 // ------------------------------------------------------------------
 // METHODS
 // ------------------------------------------------------------------
-
-function initialize()
-{
-    const accessMenu = document.getElementById("access-menu");
-    accessMenu.style.display = "none";
-}
 
 function attemptToEnableGyro()
 {
@@ -17,7 +13,10 @@ function attemptToEnableGyro()
             .then((state) => {
             if (state === 'granted')
             {
-                window.addEventListener('devicemotion', initialize);
+                const accessMenu = document.getElementById("access-menu");
+                accessMenu.style.display = "none";
+
+                window.addEventListener('devicemotion', run);
             }
             else
             {
@@ -43,5 +42,7 @@ function attemptToEnableGyro()
 
 window.onload = () => {
     const acceptButton = document.getElementById("accept-button");
+
+    acceptButton.addEventListener("touchend", attemptToEnableGyro);
     acceptButton.addEventListener("click", attemptToEnableGyro);
 }
