@@ -17,11 +17,16 @@ function attemptToEnableGyro()
             .then((state) => {
             if (state === 'granted')
             {
-                window.addEventListener('devicemotion', handleOrientation);
-                initialize();
+                window.addEventListener('devicemotion', initialize);
             }
             else
+            {
+                const p = document.createElement("p");
+                p.innerHTML = "Request rejected";
+                document.querySelectorAll("body")[0].appendChild(p);
+
                 console.error('Request to access the orientation was rejected');
+            }
             })
             .catch(console.error);
     }
