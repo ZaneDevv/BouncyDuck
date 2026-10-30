@@ -24,8 +24,10 @@ const position = {x: 0, y: 0};
  */
 export function setGravityDirectionByAngle(angle)
 {
-    gravity.x = Math.cos(angle);
-    gravity.y = Math.sin(angle);
+    angle -= Math.PI / 2;
+
+    gravity.x = 12 * Math.cos(angle);
+    gravity.y = 12 * -Math.sin(angle);
 }
 
 /**
@@ -35,6 +37,8 @@ export function setGravityDirectionByAngle(angle)
 export function initialize()
 {
     duck.style.display = "block";
+    
+    setGravityDirectionByAngle(0);
     setInterval(update, DELTA_TIME);
 }
 
