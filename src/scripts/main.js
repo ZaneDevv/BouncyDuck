@@ -21,14 +21,14 @@ function attemptToEnableGyro()
             }
             else
             {
-                const p = document.createElement("p");
-                p.innerHTML = "Request rejected";
-                document.querySelectorAll("body")[0].appendChild(p);
-
+                document.querySelectorAll("main")[0].innerHTML = "Request to access the orientation was rejected";
                 console.error('Request to access the orientation was rejected');
             }
             })
-            .catch(console.error);
+            .catch(message => {
+                console.error(message);
+                document.querySelectorAll("main")[0].innerHTML = message;
+            });
     }
     else
     {
